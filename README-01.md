@@ -7,13 +7,13 @@ using vagrant we need to organise a tunnel or we can change default
 service spec type from _ClusterIP_ to _NodePort._
 
 ```
-grep -i node dashboard.yaml
+grep -i node conf/dashboard.yaml
 ```
 >       nodePort: 30000
 >   type: NodePort
 
 ```
-kubectl create -f dashboard.yaml
+kubectl create -f conf/dashboard.yaml
 ```
 > secret "kubernetes-dashboard-certs" created
 > serviceaccount "kubernetes-dashboard" created
