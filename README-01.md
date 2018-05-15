@@ -62,3 +62,8 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 Voila. Dashboard is working and we can use GUI to observer the
 kubernets cluster (currently only with one node).
+
+**Sources:**
+1. [Web UI (Dashboard)](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+2. [Accessing Dashboard 1.7.X and above](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
+3. [Creating sample user](https://github.com/kubernetes/dashboard/wiki/Creating-sample-user)
