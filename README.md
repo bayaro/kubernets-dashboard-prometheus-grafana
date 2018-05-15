@@ -73,10 +73,10 @@ As we need a two nodes cluster so we need to use a public interface
 for vagrant machines (option --_apiserver-advertise-address_).
 
 For using the Flannel pod network add-on we need --_pod-network-cidr_
-option.
+option. It can be any private subnet.
 
 ```
-sudo kubeadm init --apiserver-advertise-address=192.168.0.106 --pod-network-cidr=10.244.0.0/24
+sudo kubeadm init --apiserver-advertise-address=<public master mode ip> --pod-network-cidr=10.244.0.0/24
 ```
 > …  
 Your Kubernetes master has initialized successfully!  
