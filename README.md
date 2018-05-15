@@ -2,9 +2,8 @@
 
 #### Initial requirements
 
-VirtualBox
-
-Vagrant
+- VirtualBox
+- Vagrant
 
 #### Working Vagrant OS
 
@@ -34,9 +33,9 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt list kubelet kubeadm kubectl
 ```
-> kubeadm/kubernetes-xenial,now 1.10.2-00 amd64 [installed]
-> kubectl/kubernetes-xenial,now 1.10.2-00 amd64 [installed]
-> kubelet/kubernetes-xenial,now 1.10.2-00 amd64 [installed]
+>kubeadm/kubernetes-xenial,now 1.10.2-00 amd64 [installed]  
+kubectl/kubernetes-xenial,now 1.10.2-00 amd64 [installed]  
+kubelet/kubernetes-xenial,now 1.10.2-00 amd64 [installed]
 
 #### Cgroup driver check
 ```sudo docker info | grep -i cgroup ```
@@ -51,19 +50,20 @@ sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 sudo systemctl status kubelet
 ```
-> ● kubelet.service - kubelet: The Kubernetes Node Agent
-    Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)
-Drop-In: /etc/systemd/system/kubelet.service.d
-             └─10-kubeadm.conf
-    Active: activating (auto-restart) (Result: exit-code) since Tue 2018-05-15 06:35:38 UTC; 3s ago
-      Docs: http://kubernetes.io/docs/
-   Process: 5871
-ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS
-$KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS
-$KUBELET_AUTHZ_
-  Main PID: 5871 (code=exited, status=255)
-May 15 06:35:38 ubuntu-xenial systemd[1]: kubelet.service: Unit entered failed state.
-May 15 06:35:38 ubuntu-xenial systemd[1]: kubelet.service: Failed with result 'exit-code'.
+
+> ● kubelet.service - kubelet: The Kubernetes Node Agent  
+ Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)  
+Drop-In: /etc/systemd/system/kubelet.service.d  
+             └─10-kubeadm.conf  
+    Active: activating (auto-restart) (Result: exit-code) since Tue 2018-05-15 06:35:38 UTC; 3s ago  
+      Docs: http://kubernetes.io/docs/  
+   Process: 5871  
+ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS  
+$KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS  
+$KUBELET_AUTHZ_  
+  Main PID: 5871 (code=exited, status=255)  
+May 15 06:35:38 ubuntu-xenial systemd[1]: kubelet.service: Unit entered failed state.  
+May 15 06:35:38 ubuntu-xenial systemd[1]: kubelet.service: Failed with result 'exit-code'.  
 
 Ooops :) kubelet does not configured at all at this point.
 
@@ -78,8 +78,8 @@ option. It can be any private subnet.
 ```
 sudo kubeadm init --apiserver-advertise-address=<public master mode ip> --pod-network-cidr=10.244.0.0/24
 ```
-> …
-Your Kubernetes master has initialized successfully!
+> …  
+Your Kubernetes master has initialized successfully!  
 …
 
 Run below commands to allow usage of kubectl by non-privileged user
@@ -103,12 +103,12 @@ Check pods in the cluster
 ```
 kubectl get pods --all-namespaces
 ```
->NAMESPACE   NAME                                  READY STATUS  RESTARTS   AGE
-kube-system  etcd-ubuntu-xenial                    1/1   Running 0          2m
-kube-system  kube-apiserver-ubuntu-xenial          1/1   Running 0          2m
-kube-system  kube-controller-manager-ubuntu-xenial 1/1   Running 0          2m
-kube-system  kube-dns-86f4d74b45-r7n7r             3/3   Running 0          2m
-kube-system  kube-proxy-pq278                      1/1   Running 0          2m
+>NAMESPACE   NAME                                  READY STATUS  RESTARTS   AGE  
+kube-system  etcd-ubuntu-xenial                    1/1   Running 0          2m  
+kube-system  kube-apiserver-ubuntu-xenial          1/1   Running 0          2m  
+kube-system  kube-controller-manager-ubuntu-xenial 1/1   Running 0          2m  
+kube-system  kube-dns-86f4d74b45-r7n7r             3/3   Running 0          2m  
+kube-system  kube-proxy-pq278                      1/1   Running 0          2m  
 kube-system  kube-scheduler-ubuntu-xenial          1/1   Running 0          2m
 
 #### Releasing a taintment of master node
@@ -126,11 +126,11 @@ config: [flannel.yml](https://raw.githubusercontent.com/coreos/flannel/v0.10.0/D
 ```
 kubectl create -f conf/flannel.yaml
 ```
-> clusterrole.rbac.authorization.k8s.io "flannel" created
-clusterrolebinding.rbac.authorization.k8s.io "flannel" created
-serviceaccount "flannel" created
-configmap "kube-flannel-cfg" created
-daemonset.extensions "kube-flannel-ds" created
+> clusterrole.rbac.authorization.k8s.io "flannel" created  
+clusterrolebinding.rbac.authorization.k8s.io "flannel" created  
+serviceaccount "flannel" created  
+configmap "kube-flannel-cfg" created  
+daemonset.extensions "kube-flannel-ds" created  
 
 ```
 kubectl get pods --all-namespaces | grep flannel
