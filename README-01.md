@@ -22,6 +22,8 @@ kubectl create -f dashboard.yaml
 > deployment.apps "kubernetes-dashboard" created
 > service "kubernetes-dashboard" created
 
+Dashboard will be accessable on <public master node ip>:30000
+
 #### Looking for the node port value of the _dashboard_ pod
 
 ```
